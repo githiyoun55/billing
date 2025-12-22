@@ -1,0 +1,502 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+}
+
+header {
+    background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
+    color: white;
+    padding: 30px;
+    text-align: center;
+}
+
+header h1 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.tabs {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.tab-btn {
+    padding: 12px 30px;
+    background: rgba(255, 255, 255, 0.2);
+    border: 2px solid white;
+    color: white;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.tab-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+}
+
+.tab-btn.active {
+    background: white;
+    color: #ee5a6f;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.tab-content {
+    display: none;
+    padding: 30px;
+    animation: fadeIn 0.3s ease;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.section-header h2 {
+    color: #333;
+    font-size: 2em;
+}
+
+.btn {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+}
+
+.btn-secondary {
+    background: #6c757d;
+    color: white;
+}
+
+.btn-secondary:hover {
+    background: #5a6268;
+    transform: translateY(-2px);
+}
+
+.btn-success {
+    background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+    color: white;
+}
+
+.btn-success:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(56, 239, 125, 0.4);
+}
+
+.btn-danger {
+    background: #dc3545;
+    color: white;
+    padding: 8px 15px;
+    font-size: 14px;
+}
+
+.btn-danger:hover {
+    background: #c82333;
+}
+
+.btn-edit {
+    background: #ffc107;
+    color: #333;
+    padding: 8px 15px;
+    font-size: 14px;
+}
+
+.btn-edit:hover {
+    background: #e0a800;
+}
+
+.search-bar {
+    margin-bottom: 20px;
+}
+
+.search-bar input {
+    width: 100%;
+    padding: 12px 20px;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+}
+
+.search-bar input:focus {
+    outline: none;
+    border-color: #667eea;
+}
+
+.table-container {
+    overflow-x: auto;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+}
+
+thead {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+th, td {
+    padding: 15px;
+    text-align: left;
+}
+
+tbody tr {
+    border-bottom: 1px solid #eee;
+    transition: background-color 0.2s ease;
+}
+
+tbody tr:hover {
+    background-color: #f8f9fa;
+}
+
+.total-label, .total-amount {
+    font-size: 1.2em;
+    font-weight: bold;
+    padding: 15px;
+}
+
+.total-amount {
+    color: #11998e;
+    text-align: right;
+}
+
+.billing-container {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 30px;
+}
+
+.billing-left, .billing-right {
+    background: #f8f9fa;
+    padding: 25px;
+    border-radius: 15px;
+}
+
+.product-selector select {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+.bill-items {
+    margin-bottom: 20px;
+}
+
+.bill-actions {
+    display: flex;
+    gap: 15px;
+    justify-content: flex-end;
+}
+
+.recent-bills {
+    max-height: 600px;
+    overflow-y: auto;
+}
+
+.bill-item {
+    background: white;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.bill-item:hover {
+    transform: translateX(5px);
+}
+
+.bill-item-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: #667eea;
+}
+
+.bill-item-date {
+    color: #666;
+    font-size: 0.9em;
+}
+
+.bill-item-total {
+    color: #11998e;
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    animation: fadeIn 0.3s ease;
+}
+
+.modal-content {
+    background-color: white;
+    margin: 5% auto;
+    padding: 30px;
+    border-radius: 15px;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    position: relative;
+    animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.close {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    font-size: 28px;
+    font-weight: bold;
+    color: #aaa;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.close:hover {
+    color: #000;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #333;
+    font-weight: 600;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: #667eea;
+}
+
+.form-actions {
+    display: flex;
+    gap: 15px;
+    justify-content: flex-end;
+    margin-top: 30px;
+}
+
+.report-controls {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.report-controls input[type="month"] {
+    padding: 12px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+.report-summary {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.stat-card {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 30px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.stat-card h3 {
+    font-size: 1.2em;
+    margin-bottom: 15px;
+    opacity: 0.9;
+}
+
+.stat-card p {
+    font-size: 2.5em;
+    font-weight: bold;
+}
+
+.report-details {
+    margin-top: 30px;
+}
+
+.bill-print-content {
+    max-width: 600px;
+}
+
+.print-bill {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+}
+
+.print-bill-header {
+    text-align: center;
+    border-bottom: 3px solid #667eea;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+}
+
+.print-bill-header h2 {
+    color: #667eea;
+    margin-bottom: 10px;
+}
+
+.print-bill-details {
+    margin-bottom: 20px;
+}
+
+.print-bill-items {
+    margin: 20px 0;
+}
+
+.print-bill-total {
+    text-align: right;
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #11998e;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 2px solid #ddd;
+}
+
+.quantity-input {
+    width: 60px;
+    padding: 5px;
+    text-align: center;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 8px;
+}
+
+@media (max-width: 768px) {
+    .billing-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .tabs {
+        flex-direction: column;
+    }
+    
+    .section-header {
+        flex-direction: column;
+        gap: 15px;
+        align-items: stretch;
+    }
+    
+    .report-summary {
+        grid-template-columns: 1fr;
+    }
+}
+
+.empty-state {
+    text-align: center;
+    padding: 50px;
+    color: #999;
+}
+
+.empty-state p {
+    font-size: 1.2em;
+    margin-top: 10px;
+}

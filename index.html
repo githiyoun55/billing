@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Momas Food - Billing Software</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🍔 Momas Food - Billing Software</h1>
+            <nav class="tabs">
+                <button class="tab-btn active" data-tab="products">Products</button>
+                <button class="tab-btn" data-tab="billing">Billing</button>
+                <button class="tab-btn" data-tab="reports">Monthly Reports</button>
+            </nav>
+        </header>
+
+        <!-- Products Section -->
+        <section id="products" class="tab-content active">
+            <div class="section-header">
+                <h2>Product Management</h2>
+                <button class="btn btn-primary" onclick="openProductModal()">+ Add Product</button>
+            </div>
+            <div class="search-bar">
+                <input type="text" id="productSearch" placeholder="Search products..." onkeyup="searchProducts()">
+            </div>
+            <div class="table-container">
+                <table id="productsTable">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Category</th>
+                            <th>Price (₹)</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="productsTableBody">
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Billing Section -->
+        <section id="billing" class="tab-content">
+            <div class="billing-container">
+                <div class="billing-left">
+                    <div class="section-header">
+                        <h2>Create Bill</h2>
+                    </div>
+                    <div class="product-selector">
+                        <select id="productSelect" onchange="addToBill()">
+                            <option value="">Select Product</option>
+                        </select>
+                    </div>
+                    <div class="bill-items">
+                        <table id="billTable">
+                            <thead>
+                                <tr>
+                                    <th>Product</th>
+                                    <th>Qty</th>
+                                    <th>Price</th>
+                                    <th>Total</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="billTableBody">
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="3" class="total-label"><strong>Grand Total:</strong></td>
+                                    <td colspan="2" class="total-amount" id="grandTotal">₹ 0.00</td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                    <div class="bill-actions">
+                        <button class="btn btn-secondary" onclick="clearBill()">Clear Bill</button>
+                        <button class="btn btn-success" onclick="generateBill()">Generate Bill</button>
+                    </div>
+                </div>
+                <div class="billing-right">
+                    <div class="section-header">
+                        <h2>Recent Bills</h2>
+                    </div>
+                    <div class="recent-bills" id="recentBills">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Reports Section -->
+        <section id="reports" class="tab-content">
+            <div class="section-header">
+                <h2>Monthly Reports</h2>
+                <div class="report-controls">
+                    <input type="month" id="reportMonth" onchange="generateMonthlyReport()">
+                    <button class="btn btn-primary" onclick="generateMonthlyReport()">Generate Report</button>
+                </div>
+            </div>
+            <div id="reportContent">
+                <div class="report-summary">
+                    <div class="stat-card">
+                        <h3>Total Sales</h3>
+                        <p id="totalSales">₹ 0.00</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Total Orders</h3>
+                        <p id="totalOrders">0</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Average Order Value</h3>
+                        <p id="avgOrderValue">₹ 0.00</p>
+                    </div>
+                </div>
+                <div class="report-details">
+                    <h3>Bill Details</h3>
+                    <div class="table-container">
+                        <table id="reportTable">
+                            <thead>
+                                <tr>
+                                    <th>Bill ID</th>
+                                    <th>Date</th>
+                                    <th>Items</th>
+                                    <th>Total Amount</th>
+                                </tr>
+                            </thead>
+                            <tbody id="reportTableBody">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Product Modal -->
+    <div id="productModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeProductModal()">&times;</span>
+            <h2 id="modalTitle">Add Product</h2>
+            <form id="productForm" onsubmit="saveProduct(event)">
+                <input type="hidden" id="productId">
+                <div class="form-group">
+                    <label for="productName">Product Name *</label>
+                    <input type="text" id="productName" required>
+                </div>
+                <div class="form-group">
+                    <label for="productCategory">Category *</label>
+                    <select id="productCategory" required>
+                        <option value="">Select Category</option>
+                        <option value="Fast Food">Fast Food</option>
+                        <option value="Beverages">Beverages</option>
+                        <option value="Desserts">Desserts</option>
+                        <option value="Snacks">Snacks</option>
+                        <option value="Main Course">Main Course</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="productPrice">Price (₹) *</label>
+                    <input type="number" id="productPrice" step="0.01" min="0" required>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" onclick="closeProductModal()">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Product</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Bill Print Modal -->
+    <div id="billModal" class="modal">
+        <div class="modal-content bill-print-content">
+            <span class="close" onclick="closeBillModal()">&times;</span>
+            <div id="billPrintContent"></div>
+            <div class="bill-actions">
+                <button class="btn btn-primary" onclick="printBill()">Print Bill</button>
+                <button class="btn btn-secondary" onclick="closeBillModal()">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
